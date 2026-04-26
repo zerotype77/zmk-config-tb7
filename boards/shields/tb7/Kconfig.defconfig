@@ -1,0 +1,6 @@
+if SHIELD_TB7
+
+config ZMK_KEYBOARD_NAME
+    default "tb7"
+
+endif # SHIELD_TB7
