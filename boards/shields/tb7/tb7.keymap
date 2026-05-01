@@ -38,7 +38,7 @@
             // kp 대신 msc 사용. &inc_dec_kp
             // 
             //    &inc_dec_kp K_SCROLL_UP    K_SCROLL_DOWN
-                &inc_dec_kp 
+            //    &inc_dec_kp 
             >;
         };
         
