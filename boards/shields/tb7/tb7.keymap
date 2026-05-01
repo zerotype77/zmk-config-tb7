@@ -8,7 +8,6 @@
 / {
     // Define a default keymap here.
     // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
-/ {
     behaviors {
         mouse_encoder_upanddown: mouse_encoder_upanddown {
             compatible = "zmk,behavior-sensor-rotate";
@@ -24,8 +23,6 @@
             bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
         };
     };
-
-};
 
 
     keymap {
