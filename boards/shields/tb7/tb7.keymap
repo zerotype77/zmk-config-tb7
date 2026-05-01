@@ -31,8 +31,8 @@
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
             sensor-bindings = <
-                &inc_dec_mmv MOVE_Y(-10) MOVE_Y_(10)
-                &inc_dec_mmv MOVE_X(-10) MOVE_X_(10)
+                &inc_dec_mmv MOVE_Y(-10) MOVE_Y(10)
+                &inc_dec_mmv MOVE_X(-10) MOVE_X(10)
                 >;
             };
 
