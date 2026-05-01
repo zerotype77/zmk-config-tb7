@@ -8,6 +8,26 @@
 / {
     // Define a default keymap here.
     // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
+/ {
+    behaviors {
+        mouse_encoder_upanddown: mouse_encoder_upanddown {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+        };
+    };
+
+    behaviors {
+        mouse_encoder_leftandright: mouse_encoder_leftandright {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
+        };
+    };
+
+};
+
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -17,10 +37,11 @@
                 &kp T       &kp S       &mo 1   &kp R
             >;
             /* 엔코더 정의 */
-            sensor-bindings = <
+            sensor-bindings = <&mouse_encoder_upanddown>;
             // kp 대신 msc 사용. &inc_dec_kp
-                &msc SCRL_DOWN       SCRL_UP
-                &msc SCRL_LEFT       SCRL_RIGHT
+            // 
+            //    &inc_dec_kp K_SCROLL_UP    K_SCROLL_DOWN
+                &inc_dec_kp 
             >;
         };
         
@@ -30,9 +51,10 @@
                 &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2  &kp N1
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
-            sensor-bindings = <
-                &msc MOVE_UP    MOVE_DOWN    
-                &msc MOVE_LEFT  MOVE_RIGHT
+            sensor-bindings = <&mouse_encoder_leftandright>;
+//            sensor-bindings = <
+//                &msc MOVE_UP    MOVE_DOWN    
+//                &msc MOVE_LEFT  MOVE_RIGHT
                 >;
             };
 
@@ -60,5 +82,5 @@
         }
     };
 };
-
 */
+
