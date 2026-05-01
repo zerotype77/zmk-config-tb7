@@ -18,8 +18,8 @@
             >;
             /* 엔코더 정의 */
             sensor-bindings = <
-                &inc_dec_kp C_VOL_UP    C_VOL_DN 
-                &inc_dec_kp PG_UP       PG_DN
+                &inc_dec_kp SCRL_LEFT  SCRL_RIGHT
+                &inc_dec_kp SCRL_UP    SCRL_DOWN
             >;
         };
         
@@ -30,9 +30,9 @@
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
             sensor-bindings = <
-                &inc_dec_kp SCRL_UP    SCRL_DOWN
                 &inc_dec_kp SCRL_LEFT  SCRL_RIGHT
-           >;
+                &inc_dec_kp C_VOL_UP    C_VOL_DN 
+                >;
             };
 
         };
