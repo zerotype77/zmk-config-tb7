@@ -50,7 +50,7 @@
             /* 엔코더 정의 */
             sensor-bindings = <
                 &mouse_encoder_upanddown    
-                mouse_encoder_leftandright  
+                &mouse_encoder_leftandright  
             >;
 
             // kp 대신 msc 사용. &inc_dec_kp
