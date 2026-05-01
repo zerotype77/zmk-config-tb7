@@ -8,22 +8,16 @@
 / {
     // Define a default keymap here.
     // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
-    behaviors {
-        mouse_encoder_upanddown: mouse_encoder_upanddown {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
-        };
-    };
 
     behaviors {
-        mouse_encoder_leftandright: mouse_encoder_leftandright {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
+        /* 마우스 스크롤용 엔코더 비헤이비어 정의 */
+        inc_dec_msc: inc_dec_msc {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+            tap-ms = <20>; // 스캔 속도에 맞게 조절 가능
         };
     };
-
 
     keymap {
         compatible = "zmk,keymap";
@@ -34,7 +28,7 @@
                 &kp T       &kp S       &mo 1   &kp R
             >;
             /* 엔코더 정의 */
-            sensor-bindings = <&mouse_encoder_upanddown>;
+            sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP>;
             // kp 대신 msc 사용. &inc_dec_kp
             // 
             //    &inc_dec_kp K_SCROLL_UP    K_SCROLL_DOWN
@@ -48,7 +42,7 @@
                 &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2  &kp N1
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
-            sensor-bindings = <&mouse_encoder_leftandright>;
+            sensor-bindings = <&inc_dec_msc SCRL_LEFT SCRL_RIGHT>;
 //            sensor-bindings = <
 //                &msc MOVE_UP    MOVE_DOWN    
 //                &msc MOVE_LEFT  MOVE_RIGHT
@@ -61,6 +55,19 @@
 
 
 /* 마우스 스크롤 정의 테스트
+
+
+/ {
+
+
+    keymap {
+        default_layer {
+            // 이제 정의한 비헤이비어를 사용할 수 있습니다.
+            sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP>;
+        };
+    };
+};
+
 / {
     behaviors {
         rgb_encoder: rgb_encoder {
@@ -79,5 +86,25 @@
         }
     };
 };
+
+
+
+    behaviors {
+        mouse_encoder_upanddown: mouse_encoder_upanddown {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+        };
+    };
+
+    behaviors {
+        mouse_encoder_leftandright: mouse_encoder_leftandright {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
+        };
+    };
+
+
 */
 
