@@ -52,7 +52,7 @@
 //            sensor-bindings = <
 //                &msc MOVE_UP    MOVE_DOWN    
 //                &msc MOVE_LEFT  MOVE_RIGHT
-                >;
+//                >;
             };
 
         };
