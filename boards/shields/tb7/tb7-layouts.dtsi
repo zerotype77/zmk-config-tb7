@@ -23,7 +23,10 @@
             , <&key_physical_attrs 100 100  200     100     0     0     0>
             , <&key_physical_attrs 100 100  300     100     0     0     0>
             ;
-        //  sensors: 엔코더의 '회전' 물리 위치 정의 
+
+
+            //  sensors: 엔코더의 '회전' 물리 위치 정의  **** 이거 사용하면 에러남.
+
 //        sensors //                 w    h    x      y      rot    rx    ry
 //            = <&key_physical_attrs 100  100  400    0       0     0     0> // Encoder 1 Rotation
 //            , <&key_physical_attrs 100  100  400    100     0     0     0> // Encoder 2 Rotation
