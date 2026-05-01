@@ -30,7 +30,7 @@
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
             sensor-bindings = <
-                &inc_dec_kp SCRL_UP    SCRL_DN
+                &inc_dec_kp SCRL_UP    SCRL_DOWN
                 &inc_dec_kp SCRL_LEFT  SCRL_RIGHT
            >;
             };
