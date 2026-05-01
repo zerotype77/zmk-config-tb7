@@ -18,9 +18,9 @@
             >;
             /* 엔코더 정의 */
             sensor-bindings = <
-            // kp 대신 msc 사용.
-                &inc_dec_kp SCRL_DOWN       SCRL_UP
-                &inc_dec_kp SCRL_LEFT       SCRL_RIGHT
+            // kp 대신 msc 사용. &inc_dec_kp
+                &msc SCRL_DOWN       SCRL_UP
+                &msc SCRL_LEFT       SCRL_RIGHT
             >;
         };
         
@@ -31,8 +31,8 @@
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
             sensor-bindings = <
-                &inc_dec_kp MOVE_UP    MOVE_DOWN    
-                &inc_dec_kp MOVE_LEFT  MOVE_RIGHT
+                &msc MOVE_UP    MOVE_DOWN    
+                &msc MOVE_LEFT  MOVE_RIGHT
                 >;
             };
 
@@ -40,3 +40,25 @@
 };
 
 
+
+/* 마우스 스크롤 정의 테스트
+/ {
+    behaviors {
+        rgb_encoder: rgb_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base {
+            ...
+            sensor-bindings = <&rgb_encoder>;
+        }
+    };
+};
+
+*/
