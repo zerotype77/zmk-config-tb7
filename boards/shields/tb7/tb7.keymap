@@ -13,13 +13,14 @@
 
         default_layer {
             bindings = <
-                &kp Z       &kp M       &kp K   &kp L
+                &msc SCRL_LEFT  &msc SCRL_RIGHT       &kp K   &kp L
                 &kp T       &kp S       &mo 1   &kp R
             >;
             /* 엔코더 정의 */
             sensor-bindings = <
-                &msc SCRL_LEFT  SCRL_RIGHT
-                &msc SCRL_UP    SCRL_DOWN
+                &inc_dec_kp SCRL_DOWN       SCRL_UP
+                &inc_dec_kp SCRL_LEFT       SCRL_RIGHT
+
             >;
         };
         
