@@ -8,6 +8,7 @@
 / {
     // Define a default keymap here.
     // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
+/*
 
     behaviors {
         // 'rotate-var' 대신 일반 'rotate'로 구체적인 동작을 지정해 봅니다.
@@ -17,6 +18,24 @@
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
             tap-ms = <30>; 
+        };
+    };
+*/
+
+
+    behaviors {
+        mouse_encoder_upanddown: mouse_encoder_upanddown {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+        };
+    };
+
+    behaviors {
+        mouse_encoder_leftandright: mouse_encoder_leftandright {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
         };
     };
 
@@ -30,8 +49,8 @@
             >;
             /* 엔코더 정의 */
             sensor-bindings = <
-            &scroll_encoder
-            &inc_dec_kp PG_DN PG_UP
+                &mouse_encoder_upanddown    
+                mouse_encoder_leftandright  
             >;
 
             // kp 대신 msc 사용. &inc_dec_kp
