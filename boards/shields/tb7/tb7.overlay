@@ -65,6 +65,7 @@
         a-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         steps = <80>; // 엔코더 사양에 맞춰 조절 (보통 80 또는 72)
+        status = "okay";
     };
 
     right_encoder: encoder_right {
@@ -73,5 +74,6 @@
         a-gpios = <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         steps = <80>;
+        status = "okay";
     };
 };
