@@ -18,9 +18,9 @@
             >;
             /* 엔코더 정의 */
             sensor-bindings = <
-                &inc_dec_kp SCRL_DOWN       SCRL_UP
-                &inc_dec_kp SCRL_LEFT       SCRL_RIGHT
-
+            // kp 대신 msc 사용.
+                &inc_dec_msc SCRL_DOWN       SCRL_UP
+                &inc_dec_msc SCRL_LEFT       SCRL_RIGHT
             >;
         };
         
@@ -31,8 +31,8 @@
                 &bt BT_CLR      &kp N4            &trans        &kp N2
             >;
             sensor-bindings = <
-                &inc_dec_kp SCRL_LEFT  SCRL_RIGHT
-                &inc_dec_kp C_VOL_UP    C_VOL_DN 
+                &inc_dec_mmv MOVE_Y(-10) MOVE_Y_(10)
+                &inc_dec_mmv MOVE_X(-10) MOVE_X_(10)
                 >;
             };
 
