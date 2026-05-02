@@ -6,6 +6,18 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+
+// 로터리 엔코더에 마우스 동작을 반영하기 위한 코드.
+behaviors {
+inc_dec_msc: sensor_rotation_scroll {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+            tap-ms = <200>;
+        };
+    };
+
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -19,10 +31,12 @@
                 &mkp LCLK       &mkp RCLK           &mkp MCLK       &kp R
             >;
             /* 엔코더 정의 */
-            sensor-bindings = <
-                    &inc_dec_kp C_VOL_DN C_VOL_UP
-                    &inc_dec_kp PG_DN PG_UP
-            >;
+            //            sensor-bindings = <
+            //                    &inc_dec_kp C_VOL_DN C_VOL_UP
+            //                    &inc_dec_kp PG_DN PG_UP
+            //>;
+// 시도2-1에서 수정한 코드
+            sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP &inc_dec_kp RIGHT LEFT>;
         };
 
 // 1번 레이어        
