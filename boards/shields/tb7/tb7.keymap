@@ -15,8 +15,8 @@
 // 테스트 키보드 3x2 레이아웃. 4열에 엔코더 x2개
 //            |      0-0      |      0-1      |      0-2     |   0-3 엔코더키   |
 //            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
-                &mmv MOVE_UP    &mmv MOVE_DOWN      &mo 1       &kp L
-                &mkp LCLK       &kp RCLK            &mo S       &kp R
+                &mmv MOVE_UP    &mmv MOVE_DOWN      &mo 1           &kp L
+                &mkp LCLK       &mkp RCLK           &mkp MCLK       &kp R
             >;
             /* 엔코더 정의 */
             sensor-bindings = <
