@@ -6,9 +6,46 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-    // Define a default keymap here.
-    // See https://zmk.dev/docs/development/hardware-integration/new-shield#default-keymap.
+    keymap {
+        compatible = "zmk,keymap";
 
+// 0번 레이어
+        default_layer {
+            bindings = <
+// 테스트 키보드 3x2 레이아웃. 4열에 엔코더 x2개
+//            |      0-0      |      0-1      |      0-2     |   0-3 엔코더키   |
+//            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
+                &mmv MOVE_UP    &mmv MOVE_DOWN      &mo 1       &kp L
+                &mkp LCLK       &kp RCLK            &mo S       &kp R
+            >;
+            /* 엔코더 정의 */
+            sensor-bindings = <
+                    &inc_dec_kp C_VOL_DN C_VOL_UP
+                    &inc_dec_kp PG_DN PG_UP
+            >;
+        };
+
+// 1번 레이어        
+        adjust_layer {
+            bindings = <
+// 테스트 키보드 3x2 레이아웃. 4열에 엔코더 x2개
+//            |      0-0      |      0-1      |      0-2     |   0-3 엔코더키   |
+//            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
+
+                &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
+                &msc SCRL_UP    &msc SCRL_DOWN      &kp N1        &kp Y
+            >;
+            sensor-bindings = <
+                    &inc_dec_kp PG_DN PG_UP
+                    &inc_dec_kp C_VOL_DN C_VOL_UP
+            >;
+            };
+        };
+};
+
+
+
+/* 마우스 스크롤 정의 테스트
 
     behaviors {
         // 'rotate-var' 대신 일반 'rotate'로 구체적인 동작을 지정해 봅니다.
@@ -37,49 +74,6 @@
         };
     };
 
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer {
-            bindings = <
-                &msc SCRL_LEFT  &msc SCRL_RIGHT       &kp K   &kp L
-                &kp T           &kp S                 &mo 1   &kp R
-            >;
-            /* 엔코더 정의 */
-            sensor-bindings = <
-                    &inc_dec_kp C_VOL_DN C_VOL_UP
-                    &inc_dec_kp PG_DN PG_UP
-            >;
-
-            // kp 대신 msc 사용. &inc_dec_kp
-            // 
-            //    &inc_dec_kp K_SCROLL_UP    K_SCROLL_DOWN
-            //    &inc_dec_kp 
-            //>;
-        };
-        
-
-        adjust_layer {
-            bindings = <
-                &bt BT_SEL 0    &bt BT_SEL 1      &bt BT_SEL 2  &kp N1
-                &bt BT_CLR      &kp N4            &trans        &kp N2
-            >;
-            sensor-bindings = <
-                &mouse_encoder_upanddown    
-                &scroll_encoder
-            >;
-//            sensor-bindings = <
-//                &msc MOVE_UP    MOVE_DOWN    
-//                &msc MOVE_LEFT  MOVE_RIGHT
-//                >;
-            };
-
-        };
-};
-
-
-
-/* 마우스 스크롤 정의 테스트
 / {
     behaviors {
         // 'rotate-var' 대신 일반 'rotate'로 구체적인 동작을 지정해 봅니다.
@@ -147,6 +141,23 @@
             bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
         };
     };
+
+            // kp 대신 msc 사용. &inc_dec_kp
+            // 
+            //    &inc_dec_kp K_SCROLL_UP    K_SCROLL_DOWN
+            //    &inc_dec_kp 
+            //>;
+
+            //            sensor-bindings = <
+//                &msc MOVE_UP    MOVE_DOWN    
+//                &msc MOVE_LEFT  MOVE_RIGHT
+//                >;
+
+
+            sensor-bindings = <
+                &mouse_encoder_upanddown    
+                &scroll_encoder
+
 
 
 */
