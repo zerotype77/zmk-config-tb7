@@ -33,7 +33,7 @@
 //            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
 
                 &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
-                &msc SCRL_UP    &msc SCRL_DOWN      &kp N2        &kp Y
+                &msc SCRL_UP    &msc SCRL_DOWN      &kp N3        &kp Y
             >;
             sensor-bindings = <
                     &inc_dec_kp PG_DN PG_UP
