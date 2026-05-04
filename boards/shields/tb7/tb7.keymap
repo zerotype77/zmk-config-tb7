@@ -37,7 +37,9 @@ inc_dec_msc: sensor_rotation_scroll {
             //                    &inc_dec_kp PG_DN PG_UP
             //>;
 // 시도2-1에서 수정한 코드
-            sensor-bindings = <&inc_dec_kp  C    V    &inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <
+                &inc_dec_kp  N1    N2    &inc_dec_kp PAGE_UP PAGE_DOWN
+                >;
 // sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP   &inc_dec_kp RIGHT LEFT>;
         };
 
@@ -51,7 +53,9 @@ inc_dec_msc: sensor_rotation_scroll {
                 &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
                 &msc SCRL_UP    &msc SCRL_DOWN      &kp N7        &kp Y
             >;
-            sensor-bindings = <&inc_dec_kp  PG_UP  PG_DOWN    &inc_dec_kp RIGHT LEFT>;
+            sensor-bindings = <
+                &inc_dec_kp  PG_UP  PG_DOWN    &inc_dec_kp  K_VOL_UP K_VOL_DN
+                >;
 
 //            sensor-bindings = <&inc_dec_kp RIGHT LEFT   &inc_dec_msc SCRL_DOWN SCRL_UP>;
             };
