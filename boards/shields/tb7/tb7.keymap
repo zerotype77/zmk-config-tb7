@@ -9,6 +9,15 @@
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
 
 
+behaviors {
+inc_dec_msc: sensor_rotation_scroll {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+            tap-ms = <50>;
+        };
+    };
+    
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -27,28 +36,28 @@
             //                    &inc_dec_kp C_VOL_DN C_VOL_UP
             //                    &inc_dec_kp PG_DN PG_UP
             //>;
-// 시도2-1에서 수정한 코드
             sensor-bindings = <
-                &inc_dec_kp  N1    N2    &inc_dec_kp PAGE_UP PAGE_DOWN
-                >;
-// sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP   &inc_dec_kp RIGHT LEFT>;
+            &inc_dec_msc SCRL_UP    SCRL_DOWN    &inc_dec_msc SCRL_LEFT   SCRL_RIGHT
+            >;
         };
-
-// 1번 레이어        
+        
+        // 1번 레이어        
         adjust_layer {
             bindings = <
-// 테스트 키보드 3x2 레이아웃. 4열에 엔코더 x2개
-//            |      0-0      |      0-1      |      0-2     |   0-3 엔코더키   |
-//            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
-
-                &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
-                &msc SCRL_UP    &msc SCRL_DOWN      &kp N8        &kp Y
+            // 테스트 키보드 3x2 레이아웃. 4열에 엔코더 x2개
+            //            |      0-0      |      0-1      |      0-2     |   0-3 엔코더키   |
+            //            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
+            
+            &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
+            &msc SCRL_UP    &msc SCRL_DOWN      &kp N8        &kp Y
             >;
-            /* 엔코더 정의 */
             sensor-bindings = <
-                 &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp C_VOL_UP C_VOL_DN
+            &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp C_VOL_UP C_VOL_DN
             >;
-            };
+        };
         };
     };
     
+    
+    // 시도2-1에서 수정한 코드
+    // sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP   &inc_dec_kp RIGHT LEFT>;
