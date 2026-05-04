@@ -8,6 +8,7 @@
 / {
 
 // 로터리 엔코더에 마우스 동작을 반영하기 위한 코드.
+/*
 behaviors {
 inc_dec_msc: sensor_rotation_scroll {
             compatible = "zmk,behavior-sensor-rotate-var";
@@ -16,7 +17,7 @@ inc_dec_msc: sensor_rotation_scroll {
             tap-ms = <50>;
         };
     };
-
+*/
 
     keymap {
         compatible = "zmk,keymap";
@@ -36,7 +37,8 @@ inc_dec_msc: sensor_rotation_scroll {
             //                    &inc_dec_kp PG_DN PG_UP
             //>;
 // 시도2-1에서 수정한 코드
-            sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP   &inc_dec_kp RIGHT LEFT>;
+            sensor-bindings = <&inc_dec_kp  C    V    &inc_dec_kp PAGE_UP PAGE_DOWN>;
+// sensor-bindings = <&inc_dec_msc SCRL_DOWN SCRL_UP   &inc_dec_kp RIGHT LEFT>;
         };
 
 // 1번 레이어        
@@ -47,9 +49,11 @@ inc_dec_msc: sensor_rotation_scroll {
 //            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
 
                 &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
-                &msc SCRL_UP    &msc SCRL_DOWN      &kp N6        &kp Y
+                &msc SCRL_UP    &msc SCRL_DOWN      &kp N7        &kp Y
             >;
-            sensor-bindings = <&inc_dec_kp RIGHT LEFT   &inc_dec_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&inc_dec_kp  PG_UP  PG_DOWN    &inc_dec_kp RIGHT LEFT>;
+
+//            sensor-bindings = <&inc_dec_kp RIGHT LEFT   &inc_dec_msc SCRL_DOWN SCRL_UP>;
             };
         };
 };
