@@ -80,7 +80,7 @@
 
 
             /* 2. 센서 등록 */
-    sensors {
+    sensors : sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <20>; // 한 바퀴 회전 시 인식 횟수
