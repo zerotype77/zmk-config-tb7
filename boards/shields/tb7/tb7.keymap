@@ -9,12 +9,16 @@
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
 // #includeのあとのあたりにスクロール量変更の定義を追記
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 500
-//80 에서 200 -> 500 으로 늘렸음. 스크롤이 너무 느렸음.
+// 80 에서 200 -> 500 으로 늘렸음. 스크롤이 너무 느렸음.
+// 효과가 있다. 아직도 좀 느리긴 하지만.
+
 
 
 
 /{
 
+
+/*
      behaviors {
        encoder_msc_down_up: encoder_msc_down_up {
            compatible = "zmk,behavior-sensor-rotate";
@@ -23,9 +27,16 @@
            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
            tap-ms = <20>;
        };
-
-
-    
+};
+*/
+     behaviors {
+       encoder_msc_down_up: encoder_msc_down_up {
+           compatible = "zmk,behavior-sensor-rotate-var";
+           label = "ENCODER_MSC_DOWN_UP";
+           #sensor-binding-cells = <2>;
+           bindings = <&msc>, <&msc>;
+           tap-ms = <20>;
+       };
 };
 
 
@@ -48,7 +59,7 @@ keymap {
         //                    &inc_dec_kp PG_DN PG_UP
         //>;
         sensor-bindings = <
-              &encoder_msc_down_up   &inc_dec_kp C_VOL_UP C_VOL_DN
+              &encoder_msc_down_up SCRL_DOWN  SCRL_UP  &inc_dec_kp C_VOL_UP C_VOL_DN
         >;
         };
         
