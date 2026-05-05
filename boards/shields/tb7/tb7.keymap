@@ -8,9 +8,9 @@
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 600  // default: 600
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
 // #includeのあとのあたりにスクロール量変更の定義を追記
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 80
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20
+//80 에서 20으로 줄였음.
 
-/ {
 
 
 // combosやmacrosと同じ階層に以下のbihaviorsを追記
