@@ -37,7 +37,7 @@
 
 
 / {
-    totem_position_map {
+    tb7_position_map {
         compatible = "zmk,physical-layout-position-map";
         complete;
         tb7_map: tb7 {
