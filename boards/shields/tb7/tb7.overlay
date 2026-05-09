@@ -7,10 +7,28 @@
 
 #include "tb7-layouts.dtsi"
 
-
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/pinctrl/nrf-pinctrl.h>  /* 이 라인이 필수입니다 */
 
 // #include <dt-bindings/zmk/sensors.h>
+&pinctrl {
+    i2c0_default: i2c0_default {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            bias-pull-up; /* 내부 풀업 저항 활성화 */
+        };
+    };
 
+    i2c0_sleep: i2c0_sleep {
+        group1 {
+            psels = <NRF_PSEL(TWIM_SDA, 0, 17)>,
+                    <NRF_PSEL(TWIM_SCL, 0, 20)>;
+            low-power-enable;
+        };
+    };
+};
 
 / {
     chosen {
@@ -91,18 +109,17 @@
 
 };
 
-
 &i2c0 {
     status = "okay";
-    sda-pin = <17>; 
-    scl-pin = <20>;
+    pinctrl-0 = <&i2c0_default>;
+    pinctrl-1 = <&i2c0_sleep>;
+    pinctrl-names = "default", "sleep";
 
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
         width = <128>;
         height = <32>;
-        /* 아래는 드라이버 설정 값들입니다 */
         segment-remap;
         com-invdir;
         page-offset = <0>;
@@ -113,4 +130,3 @@
         prechargep = <0x22>;
     };
 };
-
