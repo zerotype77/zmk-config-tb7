@@ -18,6 +18,7 @@
         // zmk,display = &oled;
         // zephyr,display = &oled;
         zephyr,display = &oled_128x32;
+
     };
 
 
@@ -94,28 +95,6 @@
 };
 
 
-/*
-
-&pro_micro_i2c {
-    status = "okay";
-
-    oled: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        width = <128>;
-        height = <32>;
-        segment-offset = <0>;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-remap;
-        com-invdir;
-        com-sequential;
-        inversion-on;
-        prechargep = <0x22>;
-    };
-};
-*/
 // I2C 핀 설정 (P0.17, P0.20) 
 &pinctrl {
     i2c0_default: i2c0_default {
@@ -157,21 +136,6 @@
         prechargep = <0x22>;
     };
 
-/*    oled_128x32: ssd1306@3c {
-        compatible = "solomon,ssd1306fb";
-        reg = <0x3c>;
-        width = <128>;
-        height = <32>;
-        segment-remap;
-        com-invdir;
-        page-offset = <0>;
-        display-offset = <0>;
-        multiplex-ratio = <31>;
-        segment-offset = <0>;
-        com-sequential;
-        prechargep = <0x22>;
-    };
-*/
 
 };
 
