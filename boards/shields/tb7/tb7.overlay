@@ -3,8 +3,7 @@
 // instructions.
 
 #include <dt-bindings/zmk/matrix_transform.h>
-// #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/sensors.h>
+// #include <dt-bindings/zmk/sensors.h>
 
 #include "tb7-layouts.dtsi"
 
