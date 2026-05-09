@@ -70,8 +70,8 @@ keymap {
             //            |      0-0      |      0-1      |      0-2     |   0-3 엔코더키   |
             //            |      1-0      |      1-1      |      1-2     |   1-3 엔코더키   |
             
-            &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK     &kp X
-            &msc SCRL_UP    &msc SCRL_DOWN      &kp N8        &kp Y
+            &msc SCRL_LEFT  &msc SCRL_RIGHT     &mkp MCLK       &kp X
+            &msc SCRL_UP    &msc SCRL_DOWN      &studio_unlock  &kp Y
             >;
             sensor-bindings = <
                   &inc_dec_kp C_VOL_UP C_VOL_DN    &inc_dec_kp C_VOL_UP C_VOL_DN
