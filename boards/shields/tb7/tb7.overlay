@@ -3,7 +3,7 @@
 // instructions.
 
 #include <dt-bindings/zmk/matrix_transform.h>
-#include <dt-bindings/zmk/outputs.h>
+// #include <dt-bindings/zmk/outputs.h>
 
 #include "tb7-layouts.dtsi"
 
@@ -15,6 +15,7 @@
 / {
     chosen {
         zmk,physical-layout = &default_layout;
+        zmk,display = &oled;
     };
 
 
@@ -88,12 +89,6 @@
         triggers-per-rotation = <20>; // 한 바퀴 회전 시 인식 횟수
     };
 
-
-
-
-    chosen {
-        zmk,display = &oled;
-    };
 
 
 &i2c0 {
