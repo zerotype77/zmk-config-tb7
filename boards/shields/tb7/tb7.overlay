@@ -3,6 +3,7 @@
 // instructions.
 
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #include "tb7-layouts.dtsi"
 
@@ -15,6 +16,7 @@
     chosen {
         zmk,physical-layout = &default_layout;
     };
+
 
     kscan: kscan {
         // If the hardware does not use a switch matrix, change this to the
@@ -85,5 +87,35 @@
         sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <20>; // 한 바퀴 회전 시 인식 횟수
     };
+
+
+
+
+    chosen {
+        zmk,display = &oled;
+    };
+
+
+&i2c0 {
+    status = "okay";
+    sda-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    scl-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <32>;
+        segment-remap;
+        com-invdir;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>;
+        segment-offset = <0>;
+        com-sequential;
+        prechargep = <0x22>;
+    };
+};
+
 
 };

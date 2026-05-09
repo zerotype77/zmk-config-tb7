@@ -6,9 +6,20 @@ manifest:
       url-base: https://github.com/zmkfirmware
     # Additional modules containing boards/shields/custom code can be listed here as well
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
+
+    # support nice_oled and nice_epaper
+#    - name: mctechnology17
+#      url-base: https://github.com/mctechnology17
+
   projects:
     - name: zmk
       remote: zmkfirmware
-      import: app/west.yml
+      revision: main
+      import: app/west.yml   # 여기서 디스플레이에 필요한 Zephyr 모듈들을 다 가져옵니다.
+    # support nice_oled and nice_epaper
+#    - name: zmk-nice-oled
+#      remote: mctechnology17
+#      revision: main
+
   self:
     path: config
