@@ -11,13 +11,13 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/pinctrl/nrf-pinctrl.h>  
 
-&uart1 { status = "okay"; };
+// &uart1 { status = "okay"; };
 
 / {
     chosen {
         zmk,physical-layout = &default_layout;
         zephyr,display = &oled_128x32;
-        zmk,studio-rpc-uart = &uart1;
+//        zmk,studio-rpc-uart = &uart1;
     };
 
 
