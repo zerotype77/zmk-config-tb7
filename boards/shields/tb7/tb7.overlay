@@ -94,8 +94,8 @@
 
 &i2c0 {
     status = "okay";
-    sda-gpios = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    scl-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    sda-pin = <17>; 
+    scl-pin = <20>;
 
     oled: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
