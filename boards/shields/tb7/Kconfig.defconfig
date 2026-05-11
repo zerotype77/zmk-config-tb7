@@ -6,12 +6,18 @@ if SHIELD_TB7
 config ZMK_KEYBOARD_NAME
     default "tb7"
 
-endif
 
+# 시프트 레지스터 사용을 위한 SPI 활성화
+config SPI
+    default y
+
+
+endif
 
 
 if ZMK_DISPLAY
 
+# OLED디스플레이 사용을 위한 I2C 활성화
 config I2C
     default y
 

@@ -35,17 +35,30 @@
         // Replace these comments with the GPIO pins in the matrix.
         // See https://zmk.dev/docs/development/hardware-integration/new-shield#shield-overlays
         // gpio1 0 사망했거나, 번호 착오로 보인다.
+
+
+
+/* 시프트 레지스터 사용 전 설정
         col-gpios
             = <&gpio0 24 GPIO_ACTIVE_HIGH>
             , <&gpio1 6  GPIO_ACTIVE_HIGH>
             , <&gpio0 11 GPIO_ACTIVE_HIGH>
             , <&gpio0 31 GPIO_ACTIVE_HIGH>
             ;
+*/
+
+        col-gpios
+            = <&shifter 1 GPIO_ACTIVE_HIGH>
+            , <&shifter 2 GPIO_ACTIVE_HIGH>
+            , <&shifter 3 GPIO_ACTIVE_HIGH>
+            , <&shifter 4 GPIO_ACTIVE_HIGH>
+            ;
 
         row-gpios
             = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             , <&gpio0 2  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
+
     };
 
     default_transform: default_transform {
@@ -94,7 +107,10 @@
 };
 
 
-// I2C 핀 설정 (P0.17, P0.20) 
+// 디스플레이 사용을 위한 I2C 핀 설정
+// SDA : P0.10
+// SCL : P0.9
+
 &pinctrl {
     i2c0_default: i2c0_default {
         group1 {
@@ -137,4 +153,49 @@
 
 
 };
+
+
+// SPI0 핀 할당 for 74HC595 시프트 레지스터
+// CLOCK        : P0.17
+// MOSI(DATA)   : P0.20
+// LATCH        : P0.22 (GPIO로 제어)
+
+ &pinctrl {
+    spi0_default: spi0_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 20)>;
+        };
+    };
+
+    spi0_sleep: spi0_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
+                    <NRF_PSEL(SPIM_MOSI, 0, 20)>;
+            low-power-enable;
+        };
+    };
+};
+
+
+
+&spi0 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
+
+    shifter: 595@0 {
+        compatible = "zmk,gpio-595";
+        status = "okay";
+        gpio-controller;
+        spi-max-frequency = <200000>;
+        reg = <0>;
+        #gpio-cells = <2>;
+        ngpios = <8>;
+    };
+};
+
 
