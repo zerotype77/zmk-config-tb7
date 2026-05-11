@@ -158,41 +158,45 @@
 
 
 /* nice!nano(nRF52840)에서 UART0 비활성화 */
-&uart0 {
-    status = "disabled";
-};
+// &uart0 {status = "disabled";};
 
-// SPI0 핀 할당 for 74HC595 시프트 레지스터
+// spi3 핀 할당 for 74HC595 시프트 레지스터
 // CLOCK        : P0.17
 // MOSI(DATA)   : P0.20
 // LATCH        : P0.22 (GPIO로 제어)
 
  &pinctrl {
-    spi0_default: spi0_default {
+    spi3_default: spi3_default {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
-                    <NRF_PSEL(SPIM_MOSI, 0, 20)>;
-        };
+                    <NRF_PSEL(SPIM_MOSI, 0, 20)>,
+                    <NRF_PSEL(SPIM_MISO, 0, 24)>;
+                        };
     };
 
-    spi0_sleep: spi0_sleep {
+    spi3_sleep: spi3_sleep {
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
                     <NRF_PSEL(SPIM_MOSI, 0, 20)>;
-            low-power-enable;
+                    <NRF_PSEL(SPIM_MISO, 0, 24)>;
+                    low-power-enable;
         };
     };
 };
 
 
-&spi0 {
+&spi3 {
 	compatible = "nordic,nrf-spim";
 	status = "okay";
-	pinctrl-0 = <&spi0_default>;
-	pinctrl-1 = <&spi0_sleep>;
+	pinctrl-0 = <&spi3_default>;
+	pinctrl-1 = <&spi3_sleep>;
 	pinctrl-names = "default", "sleep";
-	cs-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
-	sr0: 595@0 {
+
+    //wakeup-source; 
+    // Pin 0.22 for CS (Chip Select), active low
+    cs-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
+
+    sr0: 595@0 {
 		compatible = "zmk,gpio-595";
 		status = "okay";
 		gpio-controller;
@@ -206,12 +210,12 @@
 
 
 /*
-&spi0 {
+&spi3 {
     status = "okay";
     compatible = "nordic,nrf-spim";
     cs-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-0 = <&spi3_default>;
+    pinctrl-1 = <&spi3_sleep>;
     pinctrl-names = "default", "sleep";
 
     shifter: 595@0 {
