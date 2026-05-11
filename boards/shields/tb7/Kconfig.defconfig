@@ -7,11 +7,6 @@ config ZMK_KEYBOARD_NAME
     default "tb7"
 
 
-# 시프트 레지스터 사용을 위한 SPI 활성화
-config SPI
-    default y
-
-
 endif
 
 
@@ -24,6 +19,11 @@ config I2C
 config SSD1306
     default y
 
+
+# 시프트 레지스터 사용을 위한 SPI 활성화
+config SPI
+    default y
+    
 endif # ZMK_DISPLAY
 
 
