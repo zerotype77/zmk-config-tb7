@@ -47,10 +47,10 @@
             , <&gpio0 31 GPIO_ACTIVE_HIGH>
             ;
 */
-
+// 테스트를 위해 gpio와 시프트 레지스터 핀을 혼용하여 사용.
         col-gpios
-            = <&sr0 1 GPIO_ACTIVE_HIGH>
-            , <&sr0 2 GPIO_ACTIVE_HIGH>
+            = <&sr0 0 GPIO_ACTIVE_HIGH>
+            , <&gpio1 6  GPIO_ACTIVE_HIGH>
             , <&sr0 3 GPIO_ACTIVE_HIGH>
             , <&sr0 4 GPIO_ACTIVE_HIGH>
             ;
@@ -170,7 +170,6 @@
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
                     <NRF_PSEL(SPIM_MOSI, 0, 20)>;
-//                    <NRF_PSEL(SPIM_MISO, 0, 24)>;
                         };
     };
 
@@ -178,7 +177,6 @@
         group1 {
             psels = <NRF_PSEL(SPIM_SCK, 0, 17)>,
                     <NRF_PSEL(SPIM_MOSI, 0, 20)>;
-//                    <NRF_PSEL(SPIM_MISO, 0, 24)>;
                     low-power-enable;
         };
     };
