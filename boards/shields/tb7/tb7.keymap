@@ -16,17 +16,7 @@
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 500
 // 80 에서 200 -> 500 으로 늘렸음. 스크롤이 너무 느렸음.
 // 효과가 있다. 아직도 좀 느리긴 하지만.
-#define STRINGIFY(x) #x
-#define EXPAND_AND_STRINGIFY(x) STRINGIFY(x)
-#define MACRO(NAME, BINDINGS) \
-  mcr_##NAME: mcr_##NAME { \
-    label = EXPAND_AND_STRINGIFY(mcr_##NAME); \
-    compatible = "zmk,behavior-macro"; \
-    #binding-cells = <0>; \
-    wait-ms = <20>; \
-    tap-ms = <10>; \
-    bindings = <BINDINGS>; \
-  };
+
 
 // Autoshift Macro
 // #define AS(keycode) &as LS(keycode) keycode     
@@ -56,14 +46,9 @@ macros {
         <&macro_press &kp LSHFT>,
         <&macro_param_1to1 &macro_tap &kp MACRO_PLACEHOLDER>,
         <&macro_release &kp LSHFT>;
-
-
-MACRO(macro01, &macro_press &kp LALT &macro_tap &kp KP_N2 &kp KP_N4 &kp KP_N8 &macro_release &kp LALT)
-MACRO(macro02, &macro_press &kp LGUI &macro_tap &kp LEFT &macro_release &kp LGUI)
-
     };
 
-    as: autoshift {
+as: autoshift {
       compatible = "zmk,behavior-macro-one-param";
       #binding-cells = <1>;
       label = "AUTOSHIFT_KP";
@@ -78,6 +63,18 @@ MACRO(macro02, &macro_press &kp LGUI &macro_tap &kp LEFT &macro_release &kp LGUI
         <&macro_param_1to2>,
         <&as_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
     };
+
+macro001 : macro001 {
+            label = "MACRO_001";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            tap-ms = <10>;
+            bindings =
+                <&macro_press &kp LGUI>,
+                <&macro_tap &kp LEFT>,
+                <&macro_release &kp LGUI>;
+        };
   };
 
 
@@ -176,7 +173,7 @@ keymap {
 // ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
         &trans           &trans         &trans          &trans           &trans         	&kp BSPC        &kp LEFT    	&kp DOWN        &kp RIGHT		&kp PG_DN      
 // ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
-        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&mcr_macro02	&as LEFT_BRACKET &as RIGHT_BRACKET
+        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&macro001	&as LEFT_BRACKET &as RIGHT_BRACKET
 // ├───────────────┼────────────────┼───────────────┼───────────────┼────────────────┬───────────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
         &trans           &trans         &trans          &trans           &kp ENTER      	&trans        	&trans      	&trans			&trans			&trans
 // ╰───────────────┴────────────────┴───────────────┴───────────────┴────────────────┴───────────────────┴───────────────┴───────────────┴─────────────────┴──────────────────╯
