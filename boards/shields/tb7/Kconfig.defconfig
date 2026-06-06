@@ -5,9 +5,11 @@ if SHIELD_TB7
 config ZMK_KEYBOARD_NAME
     default "tb7"
 
+
 # ZMK Studio에 키맵 구조를 전달하기 위한 설정 활성화
 # config ZMK_STUDIO
 #     def_bool y
+
 
 # 시프트 레지스터 사용을 위한 SPI 활성화, 줄 순서가 바뀌면 컴파일 에러.
 # config SPI
@@ -43,19 +45,19 @@ endif
 
 
 # OLED디스플레이 노이즈 현상 제거
-# if LVGL
+ if LVGL
 
-# config LV_Z_VDB_SIZE
-#    default 64
+ config LV_Z_VDB_SIZE
+    default 64
 
-# config LV_DPI_DEF
-#     default 148
+ config LV_DPI_DEF
+     default 148
 
-# config LV_Z_BITS_PER_PIXEL
-#     default 1
+ config LV_Z_BITS_PER_PIXEL
+     default 1
 
-# choice LV_COLOR_DEPTH
-#     default LV_COLOR_DEPTH_1
-# endchoice
+ choice LV_COLOR_DEPTH
+     default LV_COLOR_DEPTH_1
+ endchoice
 
-# endif # LVGL
+ endif # LVGL
