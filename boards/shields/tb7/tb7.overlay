@@ -38,7 +38,7 @@
         // gpio1 0 사망했거나, 번호 착오로 보인다.
 
 
-
+// &gpio1 06  허용 안됨. &gpio1 6 으로 명시 해야함.
  
         col-gpios
             = <&gpio0 24 GPIO_ACTIVE_HIGH>
@@ -139,7 +139,7 @@
     pinctrl-1 = <&i2c0_sleep>;
     pinctrl-names = "default", "sleep";
 
-        oled_128x32: ssd1306@3c {
+        oled_128x64: ssd1306@3c {
         compatible = "solomon,ssd1306fb";
         reg = <0x3c>;
         width = <128>;
