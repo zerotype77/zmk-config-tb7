@@ -17,8 +17,7 @@
 / {
     chosen {
         zmk,physical-layout = &default_layout;
-        zmk,display = &oled;
-//        zephyr,display = &oled_128x32;
+        zephyr,display = &oled_128x64;
         //        zmk,studio-rpc-uart = &uart1;
     };
 
