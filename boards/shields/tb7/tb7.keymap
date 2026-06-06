@@ -16,7 +16,17 @@
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 500
 // 80 에서 200 -> 500 으로 늘렸음. 스크롤이 너무 느렸음.
 // 효과가 있다. 아직도 좀 느리긴 하지만.
-
+#define STRINGIFY(x) #x
+#define EXPAND_AND_STRINGIFY(x) STRINGIFY(x)
+#define MACRO(NAME, BINDINGS) \
+  mcr_##NAME: mcr_##NAME { \
+    label = EXPAND_AND_STRINGIFY(mcr_##NAME); \
+    compatible = "zmk,behavior-macro"; \
+    #binding-cells = <0>; \
+    wait-ms = <20>; \
+    tap-ms = <10>; \
+    bindings = <BINDINGS>; \
+  };
 
 // Autoshift Macro
 // #define AS(keycode) &as LS(keycode) keycode     
@@ -46,6 +56,11 @@ macros {
         <&macro_press &kp LSHFT>,
         <&macro_param_1to1 &macro_tap &kp MACRO_PLACEHOLDER>,
         <&macro_release &kp LSHFT>;
+
+
+MACRO(macro01, &macro_press &kp LALT &macro_tap &kp KP_N2 &kp KP_N4 &kp KP_N8 &macro_release &kp LALT)
+MACRO(macro02, &macro_press &kp LGUI &macro_tap &kp LEFT &macro_release &kp LGUI)
+
     };
 
     as: autoshift {
@@ -98,21 +113,10 @@ behaviors {
 // 이 매크로를 트리거하는 태그는 &mcr_macro01
 // BINDINGS 매개변수에는 쉼표나 꺾쇠 괄호(< 또는 >)를 포함할 수 없다는 점에 유의해. 
 // 매크로가 몇 개밖에 없다면 엄청난 시간 절약은 아니지만, 지금은 20개가 넘어서 이 압축된 형식이 정말 좋네. 즐겨봐!
-  mcr_##NAME: mcr_##NAME { 
-    label = EXPAND_AND_STRINGIFY(mcr_##NAME); 
-    compatible = "zmk,behavior-macro"; 
-    #binding-cells = <0>; 
-    wait-ms = <20>; 
-    tap-ms = <10>; 
-    bindings = <BINDINGS>; 
-  };
-
-MACRO(macro01, &macro_press &kp LALT &macro_tap &kp KP_N2 &kp KP_N4 &kp KP_N8 &macro_release &kp LALT)
-MACRO(macro02, &macro_press &kp LGUI &macro_tap &kp LEFT &macro_release &kp LGUI)
 
 
 
-    combos {
+combos {
         compatible = "zmk,combos";
         combo_esc {
             timeout-ms = <50>;
@@ -241,4 +245,5 @@ keymap {
         };        
 
     };
+};
 };
