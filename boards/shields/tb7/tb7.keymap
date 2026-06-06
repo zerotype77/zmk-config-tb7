@@ -8,7 +8,7 @@
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 600  // default: 600
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
 // #includeのあとのあたりにスクロール量変更の定義を追記
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 500
+// #define ZMK_POINTING_DEFAULT_SCRL_VAL 500
 // 80 에서 200 -> 500 으로 늘렸음. 스크롤이 너무 느렸음.
 // 효과가 있다. 아직도 좀 느리긴 하지만.
 
