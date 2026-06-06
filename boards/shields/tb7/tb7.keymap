@@ -86,9 +86,9 @@ behaviors {
 
 */
 
-/*
 
-// 콤보
+
+
     combos {
         compatible = "zmk,combos";
         combo_esc {
@@ -114,7 +114,6 @@ behaviors {
     };
 
 
-*/
 
 keymap {
     compatible = "zmk,keymap";
