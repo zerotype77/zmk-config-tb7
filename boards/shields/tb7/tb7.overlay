@@ -150,7 +150,7 @@
         multiplex-ratio = <63>;    // 128x64 디스플레이의 경우 63으로 설정    
         segment-remap;
         com-invdir;
-        com-sequential;
+//         com-sequential;      // 128x64에서는 미사용. 128x32에서만 사용.
         inversion-on;
         prechargep = <0x22>;
     };
