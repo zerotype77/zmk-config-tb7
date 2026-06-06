@@ -147,7 +147,7 @@
         segment-offset = <0>;
         page-offset = <0>;
         display-offset = <0>;
-        multiplex-ratio = <63>;    /128x64 디스플레이의 경우 63으로 설정    
+        multiplex-ratio = <63>;    // 128x64 디스플레이의 경우 63으로 설정    
         segment-remap;
         com-invdir;
         com-sequential;
