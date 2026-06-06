@@ -4,7 +4,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/pointing.h>
+// #include <dt-bindings/zmk/pointing.h>
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 600  // default: 600
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
 // #includeのあとのあたりにスクロール量変更の定義を追記
@@ -52,46 +52,48 @@ keymap {
     
     // 0번 레이어
     default_layer {
-        display-name = "Base";
+//        display-name = "Base";
         bindings = <
 
         &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O           &kp P
         &kp A           &kp S           &kp D           &kp F           &kp G           &kp H           &kp J           &kp K           &kp L           &kp SEMICOLON
         &kp Z           &kp X           &kp C           &kp V           &kp B           &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH
-        &kp LEFT_ALT    &kp LEFT_GUI    &kp LEFT_CTRL   &kp LSHFT       &kp SPACE       &mo 2           &kp CAPS        &kp RIGHT_ALT   &kp MINUS       &kp EQUAL
+        &kp LEFT_ALT    &kp LEFT_GUI    &kp LCTRL       &kp LSHFT       &kp SPACE       &mo 2           &kp CAPS        &kp RIGHT_ALT   &kp MINUS       &kp EQUAL
         >;
         /* 엔코더 정의 */ 
 //        sensor-bindings = <
 // 테스트를 위해.             &encoder_msc_down_up SCRL_DOWN  SCRL_UP  &inc_dec_kp C_VOL_UP C_VOL_DN
 //              &inc_dec_kp C_VOL_UP C_VOL_DN  &inc_dec_kp C_VOL_UP C_VOL_DN
 //        >;
-
 };
-        
+
+
+
     // 1번 레이어        
         adjust_layer {
-            display-name = "Navigation";
+//            display-name = "Navigation";
             bindings = <
         &trans           &trans         &trans          &trans           &trans         &trans           &kp HOME       &kp UP          &kp END          &trans         
         &trans           &trans         &trans          &trans           &trans         &kp BSPC         &kp LEFT       &kp DOWN        &kp RIGHT        &kp PG_UP
         &trans           &trans         &trans          &trans           &trans         &trans           &kp DEL        &trans          &trans           &kp PG_DN      
         &trans           &trans         &trans          &trans           &kp ENTER      &trans           &trans         &trans          &trans           &trans         
-
             >;
         /* 엔코더 정의 */
 //            sensor-bindings = <
 //                  &encoder_msc_down_up SCRL_LEFT  SCRL_RIGHT    &inc_dec_kp C_VOL_UP C_VOL_DN
 //            >;
         }
-// 2번 레이어        
+
+
+
+        // 2번 레이어        
         number_layer {
             display-name = "Numbers";
             bindings = <
-        &kp N1           &kp N2         &kp N3          &kp N4           &kp N5         &kp N6          &kp N7          &kp N8          &kp N9              &kp N0
+        &kp N1           &kp N2         &kp N3          &kp N4           &kp N5         &kp N6          &kp N7          &kp N8          &kp N9          &kp N0
         &trans           &trans         &trans          &trans           &trans         &kp BSPC        &kp J           &kp K           &kp L           &kp SEMICOLON
-        &trans           &trans         &trans          &trans           &trans         &trans           &trans         &trans          &trans           &trans         
-        &trans           &trans         &trans          &trans           &trans         &trans           &trans         &trans          &trans           &trans         
-
+        &trans           &trans         &trans          &trans           &trans         &trans          &trans         &trans          &trans           &trans         
+        &trans           &trans         &trans          &trans           &trans         &trans          &trans         &trans          &trans           &trans         
             >;
 };
 
