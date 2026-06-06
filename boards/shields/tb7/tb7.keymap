@@ -8,17 +8,17 @@
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 600  // default: 600
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
 // #includeのあとのあたりにスクロール量変更の定義を追記
-// #define ZMK_POINTING_DEFAULT_SCRL_VAL 500
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 500
 // 80 에서 200 -> 500 으로 늘렸음. 스크롤이 너무 느렸음.
 // 효과가 있다. 아직도 좀 느리긴 하지만.
 
 
 
-
+/*
 /{
 
 
-/*
+
      behaviors {
        encoder_msc_down_up: encoder_msc_down_up {
            compatible = "zmk,behavior-sensor-rotate";
@@ -28,9 +28,9 @@
            tap-ms = <20>;
        };
 };
-*/
-/*
-    behaviors {
+
+
+behaviors {
        encoder_msc_down_up: encoder_msc_down_up {
            compatible = "zmk,behavior-sensor-rotate-var";
            label = "ENCODER_MSC_DOWN_UP";
@@ -38,10 +38,12 @@
            bindings = <&msc>, <&msc>;
            tap-ms = <20>;
        };
-*/
+
 
 
 };
+
+*/
 
 
 
@@ -80,7 +82,8 @@ keymap {
 //            sensor-bindings = <
 //                  &encoder_msc_down_up SCRL_LEFT  SCRL_RIGHT    &inc_dec_kp C_VOL_UP C_VOL_DN
 //            >;
-    // 2번 레이어        
+        }
+// 2번 레이어        
         number_layer {
             display-name = "Numbers";
             bindings = <
@@ -115,4 +118,3 @@ keymap {
         };        
 
     };
-};
