@@ -58,7 +58,7 @@ keymap {
         &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O           &kp P
         &kp A           &kp S           &kp D           &kp F           &kp G           &kp H           &kp J           &kp K           &kp L           &kp SEMICOLON
         &kp Z           &kp X           &kp C           &kp V           &kp B           &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH
-        &kp LEFT_ALT    &kp LEFT_GUI    &kp LEFT_CTRL   &kp LEFT_SHIFT  &kp SPACE       &mo 2           &kp RIGHT_CTRL   &kp RIGHT_GUI    &kp RIGHT_ALT   &kp LEFT
+        &kp LEFT_ALT    &kp LEFT_GUI    &kp LEFT_CTRL   &kp LEFT_SHIFT  &kp SPACE       &mo 1           &kp RIGHT_CTRL   &kp RIGHT_GUI    &kp RIGHT_ALT   &kp LEFT
         >;
         /* 엔코더 정의 */ 
 //        sensor-bindings = <
