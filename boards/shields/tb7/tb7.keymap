@@ -72,7 +72,9 @@ macro001: macro001 {
             tap-ms = <10>;
             bindings =
                 <&macro_press &kp LGUI>,
+                <&macro_press &kp LCTRL>,
                 <&macro_tap &kp LEFT>,
+                <&macro_release &kp LCTRL>;
                 <&macro_release &kp LGUI>;
         };
   };
@@ -162,11 +164,11 @@ keymap {
 //            display-name = "Navigation";
             bindings = <
 // ╭───────────────┬────────────────┬───────────────┬───────────────┬─────────────╮      ╭───────────────┬───────────────┬───────────────┬─────────────────┬──────────────────╮
-        &as F1           &as F2         &as F3          &as F4           &as F5             &kp HOME  		&kp UP     		&kp END    		&trans  		&kp PG_UP
+        &as F1           &as F2         &as F3          &as F4           &as F5             &trans  		&kp HOME  		&kp UP     		&kp END    		&kp PG_UP
 // ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
-        &trans           &trans         &trans          &trans           &trans         	&kp BSPC        &kp LEFT    	&kp DOWN        &kp RIGHT		&kp PG_DN      
+        &trans           &macro001      &trans          &trans           &trans         	&kp BSPC        &kp LEFT    	&kp DOWN        &kp RIGHT		&kp PG_DN      
 // ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
-        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&macro001	    &as LEFT_BRACKET &as RIGHT_BRACKET
+        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&trans  	    &as LEFT_BRACKET &as RIGHT_BRACKET
 // ├───────────────┼────────────────┼───────────────┼───────────────┼────────────────┬───────────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
         &trans           &trans         &trans          &trans           &kp ENTER      	&trans        	&trans      	&trans			&trans			&trans
 // ╰───────────────┴────────────────┴───────────────┴───────────────┴────────────────┴───────────────────┴───────────────┴───────────────┴─────────────────┴──────────────────╯
