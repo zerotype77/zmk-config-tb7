@@ -6,12 +6,20 @@ if SHIELD_TB7
 config ZMK_KEYBOARD_NAME
     default "tb7"
 
-# 시프트 레지스터 사용을 위한 SPI 활성화, 줄이 바뀌면 컴파일 에러.
+# 시프트 레지스터 사용을 위한 SPI 활성화, 줄 순서가 바뀌면 컴파일 에러.
 # config SPI
 #    default y
     
 
 endif
+
+
+# ZMK Studio에 키맵 구조를 전달하기 위한 설정 활성화
+config ZMK_STUDIO
+    def_bool y
+
+endif
+
 
 
 if ZMK_DISPLAY
