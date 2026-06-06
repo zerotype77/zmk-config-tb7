@@ -64,7 +64,8 @@ as: autoshift {
         <&as_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
     };
 
-macro001 : macro001 {
+    // 일반 매크로 정의.
+macro001: macro001 {
             label = "MACRO_001";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
