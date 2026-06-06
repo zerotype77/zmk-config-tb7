@@ -82,7 +82,7 @@ keymap {
 //            sensor-bindings = <
 //                  &encoder_msc_down_up SCRL_LEFT  SCRL_RIGHT    &inc_dec_kp C_VOL_UP C_VOL_DN
 //            >;
-        }
+};
 
 
 
