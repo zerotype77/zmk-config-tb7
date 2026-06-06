@@ -14,10 +14,28 @@
 
 
 // Autoshift Macro
-#define AS(keycode) &as LS(keycode) keycode     
-
+//#define AS(keycode) &as LS(keycode) keycode     
+// 위 오토시프트 매크로는 대문자가 된 후에도 연속으로 눌린 상태여서 사용하기 불편함.
 
 /{
+
+    behaviors {
+	as_ht: autoshift_hold_tap {
+		compatible = "zmk,behavior-hold-tap";
+		label = "AUTOSHIFT_HOLD_TAP";
+		#binding-cells = <2>;
+		tapping-term-ms = <175>;
+		quick-tap-ms = <0>;
+		flavor = "tap-preferred";
+		require-prior-idle-ms = <80>;
+		bindings = <&shifted>, <&kp>;
+	};
+};
+
+
+
+// 아래 오토시프트 매크로는 대문자가 된 후에도 연속으로 눌린 상태여서 사용하기 불편함.
+/*
 
     behaviors {
         as: auto_shift {
@@ -29,6 +47,8 @@
             bindings = <&kp>, <&kp>;
         };
     };
+*/
+
 
 /*
 // 엔코더 정의 예시. 필요에 따라 선택하여 사용.
@@ -55,6 +75,23 @@ behaviors {
 */
 
 
+// 매크로 정의. 키맵에서 &as Q 형태로 사용 가능
+macros {
+	shifted: macro_shifted_kp {
+		#binding-cells = <1>;
+		label = "MACRO_SHIFTED_KP";
+		compatible = "zmk,behavior-macro-one-param";
+		bindings =
+		<&macro_press>,
+		<&kp LSHFT &macro_param_1to1>,
+		<&macro_tap>,
+		<&kp MACRO_PLACEHOLDER>,
+		<&macro_release>,
+		<&kp LSHFT>;
+
+    };
+};
+
 keymap {
     compatible = "zmk,keymap";
     
@@ -65,7 +102,7 @@ keymap {
 
         &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O           &kp P
         &kp A           &kp S           &kp D           &kp F           &kp G           &kp H           &kp J           &kp K           &kp L           &kp SEMICOLON
-        &kp Z           &kp X           &kp C           &kp V           &kp B           AS(N)           &kp M           &kp COMMA       &kp DOT         &kp SLASH
+        &kp Z           &kp X           &kp C           &kp V           &kp B           &as N           &kp M           &kp COMMA       &kp DOT         &kp SLASH
         &kp LEFT_ALT    &kp LEFT_GUI    &kp LCTRL       &kp LSHFT       &kp SPACE       &mo 2           &kp CAPS        &kp RIGHT_ALT   &kp MINUS       &kp EQUAL
         >;
         /* 엔코더 정의 */ 
