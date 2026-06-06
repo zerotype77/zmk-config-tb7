@@ -5,33 +5,41 @@ if SHIELD_TB7
 config ZMK_KEYBOARD_NAME
     default "tb7"
 
-
 # ZMK Studio에 키맵 구조를 전달하기 위한 설정 활성화
 # config ZMK_STUDIO
 #     def_bool y
-
 
 # 시프트 레지스터 사용을 위한 SPI 활성화, 줄 순서가 바뀌면 컴파일 에러.
 # config SPI
 #    default y
     
 
+config ZMK_DISPLAY
+    def_bool y
+
+# ZMK 내부 디스플레이 라이브러리 및 드라이버 의존성 로드
+config DISPLAY
+    def_bool y
+
+config SSD1306
+    def_bool y
+
 endif
 
 
 
 
-if ZMK_DISPLAY
-
+# if ZMK_DISPLAY
+# config ZMK_DISPLAY
+#    def_bool y
 # OLED디스플레이 사용을 위한 I2C 활성화
-config I2C
-    default y
+# config I2C
+#    default y
 
-config SSD1306
-    default y
+# config SSD1306
+#     default y
 
-
-endif # ZMK_DISPLAY
+# endif # ZMK_DISPLAY
 
 
 # OLED디스플레이 노이즈 현상 제거
