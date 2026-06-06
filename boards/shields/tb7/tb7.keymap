@@ -4,6 +4,11 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+
+#define STRINGIFY(x) #x
+#define EXPAND_AND_STRINGIFY(x) STRINGIFY(x)
+#define MACRO(NAME, BINDINGS) 
+
 // #include <dt-bindings/zmk/pointing.h>
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 600  // default: 600
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 50    // default: 10
@@ -88,6 +93,24 @@ behaviors {
 
 
 
+// 매크로 코드 간소화를 위한 정의
+// 키 바인드 또는 콤보에서 매크로를 호출하려면 태그가 "mcr_" + 이름을 붙인 것이어야 해. 그래서 이 경우, 
+// 이 매크로를 트리거하는 태그는 &mcr_macro01
+// BINDINGS 매개변수에는 쉼표나 꺾쇠 괄호(< 또는 >)를 포함할 수 없다는 점에 유의해. 
+// 매크로가 몇 개밖에 없다면 엄청난 시간 절약은 아니지만, 지금은 20개가 넘어서 이 압축된 형식이 정말 좋네. 즐겨봐!
+  mcr_##NAME: mcr_##NAME { \
+    label = EXPAND_AND_STRINGIFY(mcr_##NAME); \
+    compatible = "zmk,behavior-macro"; \
+    #binding-cells = <0>; \
+    wait-ms = <20>; \
+    tap-ms = <10>; \
+    bindings = <BINDINGS>; \
+  };
+
+MACRO(macro01, &macro_press &kp LALT &macro_tap &kp KP_N2 &kp KP_N4 &kp KP_N8 &macro_release &kp LALT)
+MACRO(macro02, &macro_press &kp LGUI &macro_tap &kp LEFT &macro_release &kp LGUI)
+
+
 
     combos {
         compatible = "zmk,combos";
@@ -122,11 +145,15 @@ keymap {
     default_layer {
 //        display-name = "Base";
         bindings = <
-
-        &kp Q           &kp W           &kp E           &kp R           &kp T           &kp Y           &kp U           &kp I           &kp O           &kp P
-        &kp A           &kp S           &kp D           &kp F           &kp G           &kp H           &kp J           &kp K           &kp L           &kp SEMICOLON
-        &kp Z           &kp X           &kp C           &kp V           &kp B           &as N           &kp M           &kp COMMA       &kp DOT         &kp SLASH
-        &kp LEFT_ALT    &kp LEFT_GUI    &kp LCTRL       &kp LSHFT       &kp SPACE       &mo 2           &kp CAPS        &kp RIGHT_ALT   &kp MINUS       &kp EQUAL
+// ╭───────────────┬────────────────┬───────────────┬───────────────┬─────────────╮      ╭───────────────┬───────────────┬───────────────┬─────────────────┬──────────────────╮
+     &as Q           &as W            	&as E           &as R            &as T   	          	&as Y       &as U           &as I           &as O 			&as SEMICOLON
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+     &as A           &as S            	&as D           &as F            &as G       	    	&as H       &as J           &as K           &as L			&as P
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+     &as Z           &as X            	&as C           &as V            &as B        			&as N		&as M			&as COMMA  		&as DOT			&as SLASH
+// ├───────────────┼────────────────┼───────────────┼───────────────┼────────────────┬───────────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+     &kp LEFT_ALT    &kp LEFT_GUI 		&kp LCTRL       &kp LSHFT       &kp SPACE    	    	&mo 2		&kp CAPS        &mo 3			&as MINUS 		&as EQUAL
+// ╰───────────────┴────────────────┴───────────────┴───────────────┴────────────────┴───────────────────┴───────────────┴───────────────┴─────────────────┴──────────────────╯
         >;
         /* 엔코더 정의 */ 
 //        sensor-bindings = <
@@ -136,15 +163,19 @@ keymap {
 };
 
 
-
     // 1번 레이어        
         adjust_layer {
 //            display-name = "Navigation";
             bindings = <
-        &trans           &trans         &trans          &trans           &trans         &trans           &kp HOME       &kp UP          &kp END          &trans         
-        &trans           &trans         &trans          &trans           &trans         &kp BSPC         &kp LEFT       &kp DOWN        &kp RIGHT        &kp PG_UP
-        &trans           &trans         &trans          &trans           &trans         &trans           &kp DEL        &trans          &trans           &kp PG_DN      
-        &trans           &trans         &trans          &trans           &kp ENTER      &trans           &trans         &trans          &trans           &trans         
+// ╭───────────────┬────────────────┬───────────────┬───────────────┬─────────────╮      ╭───────────────┬───────────────┬───────────────┬─────────────────┬──────────────────╮
+        &as F1           &as F2         &as F3          &as F4           &as F5             &kp HOME  		&kp UP     		&kp END    		&trans  		&kp PG_UP
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &trans         	&kp BSPC        &kp LEFT    	&kp DOWN        &kp RIGHT		&kp PG_DN      
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&mcr_macro02	&as LEFT_BRACKET &as RIGHT_BRACKET
+// ├───────────────┼────────────────┼───────────────┼───────────────┼────────────────┬───────────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &kp ENTER      	&trans        	&trans      	&trans			&trans			&trans
+// ╰───────────────┴────────────────┴───────────────┴───────────────┴────────────────┴───────────────────┴───────────────┴───────────────┴─────────────────┴──────────────────╯
             >;
         /* 엔코더 정의 */
 //            sensor-bindings = <
@@ -158,11 +189,33 @@ keymap {
         number_layer {
 //            display-name = "Numbers";
             bindings = <
-        &kp N1           &kp N2         &kp N3          &kp N4           &kp N5         &kp N6          &kp N7          &kp N8          &kp N9          &kp N0
-        &trans           &trans         &trans          &trans           &trans         &kp BSPC        &kp J           &kp K           &kp L           &kp SEMICOLON
-        &trans           &trans         &trans          &trans           &trans         &trans          &trans         &trans          &trans           &trans         
-        &trans           &trans         &trans          &trans           &trans         &trans          &trans         &trans          &trans           &trans         
+// ╭───────────────┬────────────────┬───────────────┬───────────────┬─────────────╮      ╭───────────────┬───────────────┬───────────────┬─────────────────┬──────────────────╮
+        &kp N1           &kp N2         &kp N3          &kp N4           &kp N5				&kp N6          &kp N7          &kp N8          &kp N9          &kp N0
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &trans         	&kp BSPC        &kp LEFT    	&kp DOWN        &kp RIGHT		&kp PG_DN      
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&trans   		&as LEFT_BRACKET &as RIGHT_BRACKET
+// ├───────────────┼────────────────┼───────────────┼───────────────┼────────────────┬───────────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &kp ENTER      	&trans        	&trans      	&mcr_macro02	&trans			&trans
+// ╰───────────────┴────────────────┴───────────────┴───────────────┴────────────────┴───────────────────┴───────────────┴───────────────┴─────────────────┴──────────────────╯       
             >;
+
+        // 3번 레이어        
+        function_layer {
+//            display-name = "Numbers";
+            bindings = <
+// ╭───────────────┬────────────────┬───────────────┬───────────────┬─────────────╮      ╭───────────────┬───────────────┬───────────────┬─────────────────┬──────────────────╮
+        &kp F1           &kp F2         &kp F3          &kp F4           &kp F5				&kp F6          &kp F7          &kp F8          &KP F9          &kp F10
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &trans         	&kp BSPC        &kp LEFT    	&kp DOWN        &kp RIGHT		&kp PG_DN      
+// ├───────────────┼────────────────┼───────────────┼───────────────┼─────────────┤      ├───────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &trans         	&trans       	&kp DEL     	&trans   		&as LEFT_BRACKET &as RIGHT_BRACKET
+// ├───────────────┼────────────────┼───────────────┼───────────────┼────────────────┬───────────────────┼───────────────┼───────────────┼─────────────────┼──────────────────┤
+        &trans           &trans         &trans          &trans           &kp ENTER      	&trans        	&trans      	&mcr_macro02	&kp F11			&kp F12
+// ╰───────────────┴────────────────┴───────────────┴───────────────┴────────────────┴───────────────────┴───────────────┴───────────────┴─────────────────┴──────────────────╯             
+            >;
+
+
 };
 
         extra1 {
