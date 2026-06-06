@@ -14,7 +14,7 @@
 
 
 // Autoshift Macro
-//#define AS(keycode) &as LS(keycode) keycode     
+#define AS(keycode) &as LS(keycode) keycode     
 // 위 오토시프트 매크로는 대문자가 된 후에도 연속으로 눌린 상태여서 사용하기 불편함.
 
 /{
@@ -35,7 +35,7 @@
 
 
 // 아래 오토시프트 매크로는 대문자가 된 후에도 연속으로 눌린 상태여서 사용하기 불편함.
-/*
+
 
     behaviors {
         as: auto_shift {
@@ -47,7 +47,7 @@
             bindings = <&kp>, <&kp>;
         };
     };
-*/
+
 
 
 /*
@@ -91,6 +91,28 @@ macros {
 
     };
 };
+
+
+// 콤보
+    combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <2 3>;    // 'W' 키와 'E' 키의 물리적 위치 번호
+            bindings = <&kp ESC>;       // 발동될 키
+            layers = <0>;               // 0번(기본) 레이어에서만 작동
+        };
+        
+        combo_bspc {
+            timeout-ms = <100>;
+            key-positions = <18 19>;    // 'K' 키와 'L' 키의 위치 번호
+            bindings = <&kp ENTER>;      // Enter 발동
+            layers = <0>;               // 0번(기본) 레이어에서만 작동
+        };
+    };
+
+
+
 
 keymap {
     compatible = "zmk,keymap";
